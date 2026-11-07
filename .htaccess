@@ -1,0 +1,12 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+    # Block access to protected directories
+    RedirectMatch 404 ^/(config|controllers|models|views|vendor|runtime|tests|mail|vagrant)/
+
+    # Rewrite all requests to web directory
+    RewriteCond %{REQUEST_URI} !^/web/
+    RewriteRule ^(.*)$ web/$1 [L]
+</IfModule>
